@@ -1,0 +1,7 @@
+.MuiButton-text {
+  text-transform: lowercase !important;
+}
+
+.MuiButton-text:focus {
+  outline: none !important;
+}
