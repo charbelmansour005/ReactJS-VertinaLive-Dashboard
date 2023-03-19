@@ -89,20 +89,6 @@ export default function SideDrawerMain() {
     }))
   }, [])
 
-  // const handleGetPosts = () => {
-  //   mutate({
-  //     model: CONTANTS.openAiModel,
-  //     messages: [{ content: input, role: CONTANTS.role.user }],
-  //   })
-  //   setInput("")
-  // }
-
-  // const handleRegenerateResponse = () => {
-  //   setInput(base!)
-  //   setBase(input)
-  //   handleSendMessage()
-  // }
-
   //cata
   const handleClick = useCallback((event: React.MouseEvent<HTMLElement>) => {
     setSideBarState((prevState) => ({
