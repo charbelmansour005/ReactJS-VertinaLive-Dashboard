@@ -11,7 +11,7 @@ import {
   East,
 } from "@mui/icons-material"
 
-export default function VisitorsCard() {
+export default function OrdersCard() {
   return (
     <Card elevation={4} sx={{ minWidth: 275 }}>
       <CardContent>

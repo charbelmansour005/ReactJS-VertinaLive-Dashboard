@@ -1,5 +1,6 @@
-import axios, { AxiosResponse } from "axios"
+import { AxiosResponse } from "axios"
 import { postsURL } from "./api"
+import { jsonInstance } from "./jsonInstance"
 
 export interface Posts {
   userId: number
@@ -9,7 +10,7 @@ export interface Posts {
 }
 
 export async function fetchPosts() {
-  const response: AxiosResponse = await axios.get(postsURL)
+  const response: AxiosResponse = await jsonInstance.get(`/${postsURL}`)
 
   const data: Posts[] = response.data
 

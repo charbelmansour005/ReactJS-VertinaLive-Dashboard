@@ -11,9 +11,10 @@ import {
   SideDrawerList,
 } from "../../components/index"
 /**
- * TODO: add VisitorsCard to index.ts exports
+ * TODO: add below to index.ts exports
  */
 import VisitorsCard from "../../components/VisitorsCard/VisitorsCard"
+import OrdersCard from "../../components/OrdersCard/OrdersCard"
 
 const drawerWidth = 240
 
