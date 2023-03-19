@@ -4,9 +4,9 @@ import {
   SideMarketingListItem,
   SideOrdersListItem,
   SideShopSelect,
+  ListItems,
 } from "../index"
 import { Divider, List, Typography } from "@mui/material"
-import ListItems from "../UI/ListItems"
 import {
   AttachMoneyOutlined,
   BrushOutlined,

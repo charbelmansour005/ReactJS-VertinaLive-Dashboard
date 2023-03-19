@@ -4,13 +4,8 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material"
-import { ThemeColors } from "../../helpers/colors"
-
-interface ListItemsProps {
-  icon: JSX.Element
-  primaryText: string
-  onClick?: () => void
-}
+import { ThemeColors } from "../../../helpers/colors"
+import { ListItemsProps } from "./interfaces"
 
 export default function ListItems({
   icon,

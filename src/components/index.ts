@@ -5,3 +5,6 @@ export { default as SideMarketingListItem } from "./SideMarketingListItem/SideMa
 export { default as SideOrdersListItem } from "./SideOrdersListItem/SideOrdersListItem"
 export { default as TopToolBar } from "./TopToolBar/TopToolBar"
 export { default as SideShopSelect } from "./SideShopSelect/SideShopSelect"
+// ui
+export { default as ListItems } from "./UI/ListItems/ListItems"
+export { default as MarketingListItemsUI } from "./UI/MarketingListItemsUI/MarketingListItemsUI"

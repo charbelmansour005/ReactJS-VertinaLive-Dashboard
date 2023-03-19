@@ -1,7 +1,9 @@
+import { useState } from "react"
 import {
   KeyboardArrowDown,
   KeyboardArrowUp,
   ShoppingCartOutlined,
+  TimerOutlined,
 } from "@mui/icons-material"
 import {
   Fade,
@@ -10,44 +12,63 @@ import {
   ListItemIcon,
   ListItemText,
   Menu,
-  MenuItem,
   Typography,
+  LinearProgress,
+  Stack,
 } from "@mui/material"
-import { catalogItems } from "../../helpers/fakeData"
 import { Props } from "./types"
 import { ThemeColors } from "../../helpers/colors"
+import { useQuery } from "@tanstack/react-query"
+import { Posts } from "../../api/fetchPosts"
+import { fetchPosts } from "../../api/fetchPosts"
+import SideCatalogueSubItems from "../SideCatalogueSubItems/SideCatalogueSubItems"
 
 export default function SideCatalogueListItem({ ...props }: Props) {
-  const imageStyle = {
-    marginRight: 15,
-    height: 50,
-    width: 50,
-    borderRadius: 2,
-  }
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
+  const {
+    status,
+    error,
+    data: posts = [],
+  } = useQuery({
+    queryKey: ["posts"],
+    queryFn: fetchPosts,
+    onError: (error: Error) => {
+      setErrorMsg(error?.message)
+    },
+  })
+
   const mappedItems = () => {
     return (
       <div>
-        {catalogItems.map((item, index) => (
-          <MenuItem
-            key={`${item.id + Math.random() + index * 900}`}
-            sx={{ backgroundColor: "#fff", padding: 2 }}
-            onClick={props.handleClose}
-          >
-            <img src={item.image} alt={item.name} style={imageStyle} />
-            <div>
-              <Typography variant="body2">{item.name}</Typography>
-              <Typography variant="body2" color={"gray"}>
-                {item.description}
-              </Typography>
-              <Typography variant="body2" color={"gray"}>
-                ${item.price}
-              </Typography>
-            </div>
-          </MenuItem>
+        {posts.map((item: Posts, index: number) => (
+          <SideCatalogueSubItems
+            id={item.id}
+            title={item.title}
+            index={index}
+            body={item.body}
+            userId={item.userId}
+          />
         ))}
       </div>
     )
   }
+
+  const iconStyles = { position: "absolute", right: 10, bottom: 10 }
+
+  const isLoading = () => (
+    <Stack sx={{ color: ThemeColors.textActive }}>
+      <LinearProgress
+        color="inherit"
+        sx={{
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      />
+      <Typography variant="body2" color={"gray"} sx={{ p: 10 }}>
+        Loading items
+      </Typography>
+    </Stack>
+  )
 
   return (
     <ListItem disablePadding>
@@ -71,18 +92,17 @@ export default function SideCatalogueListItem({ ...props }: Props) {
           }}
         >
           {props.openMenu ? (
-            <KeyboardArrowUp
-              sx={{ position: "absolute", right: 10, bottom: 10 }}
-            />
+            <KeyboardArrowUp sx={iconStyles} />
+          ) : status === "loading" ? (
+            <TimerOutlined sx={iconStyles} />
           ) : (
-            <KeyboardArrowDown
-              sx={{ position: "absolute", right: 10, bottom: 10 }}
-            />
+            <KeyboardArrowDown sx={iconStyles} />
           )}
         </ListItemIcon>
       </ListItemButton>
+
       <Menu
-        elevation={1}
+        elevation={8}
         variant="menu"
         id="fade-menu"
         MenuListProps={{
@@ -93,7 +113,18 @@ export default function SideCatalogueListItem({ ...props }: Props) {
         onClose={props.handleClose}
         TransitionComponent={Fade}
       >
-        {mappedItems()}
+        {posts.length > 0 && mappedItems()}
+        {error && (
+          <Typography variant="body2" color={"red"} sx={{ p: 10 }}>
+            {`${errorMsg}`}
+            {errorMsg === "Network Error" && (
+              <>
+                <br /> Check your internet connection...
+              </>
+            )}
+          </Typography>
+        )}
+        {status === "loading" && isLoading()}
       </Menu>
     </ListItem>
   )

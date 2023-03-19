@@ -1,5 +1,5 @@
 ::-webkit-scrollbar {
-  width: 0.8em;
+  width: 0.7em;
 }
 
 ::-webkit-scrollbar-track {
@@ -15,5 +15,5 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(200, 57%, 45%);
+  background: hsl(200, 69%, 77%);
 }

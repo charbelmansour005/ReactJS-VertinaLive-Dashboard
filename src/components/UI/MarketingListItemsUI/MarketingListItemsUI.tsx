@@ -1,13 +1,8 @@
 import { ListItemButton, ListItemText } from "@mui/material"
-import { ThemeColors } from "../../helpers/colors"
+import { ThemeColors } from "../../../helpers/colors"
+import { ListItemProps } from "./interfaces"
 
-type ListItemProps = {
-  children: React.ReactNode
-  tabIndex?: number
-  sx?: object
-}
-
-export const MarketingListItemsUI = ({
+const MarketingListItemsUI = ({
   children,
   tabIndex = 1,
   sx = {},
@@ -27,3 +22,5 @@ export const MarketingListItemsUI = ({
     </ListItemButton>
   )
 }
+
+export default MarketingListItemsUI

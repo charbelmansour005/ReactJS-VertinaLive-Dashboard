@@ -7,25 +7,16 @@ import {
   Collapse,
 } from "@mui/material"
 import React from "react"
-import { MarketingListItemsUI } from "../UI/MarketingListItemsUI"
+import { MarketingListItemsUI } from "../index"
 import { Props } from "./types"
 import { ThemeColors } from "../../helpers/colors"
+import { items } from "../../helpers/marketingSubItems"
 
 export default function SideMarketingListItem({
   isCollapsed,
   handleToggleCollapse,
 }: Props) {
-  const items = [
-    { text: "Discount Codes" },
-    { text: "Exit Intent" },
-    { text: "Checkout Features" },
-    { text: "Post purchase conversion" },
-    { text: "Cart abandonment" },
-    { text: "Timer checkout" },
-    { text: "Sell on Social" },
-    { text: "Special Offer" },
-    { text: "Seasonal Offer" },
-  ]
+  const IconStyle = { position: "absolute", right: 10, bottom: 10 }
   return (
     <React.Fragment>
       <ListItem disablePadding>
@@ -49,13 +40,9 @@ export default function SideMarketingListItem({
             }}
           >
             {!isCollapsed ? (
-              <KeyboardArrowDown
-                sx={{ position: "absolute", right: 10, bottom: 10 }}
-              />
+              <KeyboardArrowDown sx={IconStyle} />
             ) : (
-              <KeyboardArrowUp
-                sx={{ position: "absolute", right: 10, bottom: 10 }}
-              />
+              <KeyboardArrowUp sx={IconStyle} />
             )}
           </ListItemIcon>
         </ListItemButton>

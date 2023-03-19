@@ -12,7 +12,7 @@ type Props = {
 
 export default function SelectAutoWidth({ ...props }: Props) {
   return (
-    <FormControl sx={{ ml: 2, mt: 2, mb: 2 }}>
+    <FormControl sx={{ mt: 2, mb: 2, pl: 2 }} fullWidth>
       <Select
         IconComponent={(props) => (
           <KeyboardArrowDown
@@ -28,7 +28,7 @@ export default function SelectAutoWidth({ ...props }: Props) {
         datatype="string"
         autoWidth={false}
         sx={{
-          width: "15.5vw",
+          width: "90%",
           fontSize: "0.9em",
           color: ThemeColors.textInActive,
         }}
