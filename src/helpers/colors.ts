@@ -6,4 +6,5 @@ export const ThemeColors = {
   themeRed: "#F33451",
   lightBlue: "#f0fcfc",
   bgActive: "#f8f4f4",
+  dashBg: "#F8F9FB",
 }
