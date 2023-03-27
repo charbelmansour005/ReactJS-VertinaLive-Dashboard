@@ -6,14 +6,18 @@ import {
   useMediaQuery,
   Theme,
 } from "@mui/material"
+import { TopToolBarProps } from "../../../types/index"
 import IconButton from "@mui/material/IconButton"
 import MenuIcon from "@mui/icons-material/Menu"
-import { Props } from "./types"
 import { ThemeColors } from "../../helpers/colors"
 import { OfflineBoltOutlined } from "@mui/icons-material"
 import "./TopToolBar.css"
 
-const TopToolBar = ({ ...props }: Props) => {
+const TopToolBar = ({ handleDrawerOpen, open }: TopToolBarProps) => {
+  const isScreenSmall = useMediaQuery((theme: Theme) =>
+    theme.breakpoints.down("sm")
+  )
+
   const notificationStyle = {
     position: "absolute",
     right: 23,
@@ -27,21 +31,17 @@ const TopToolBar = ({ ...props }: Props) => {
     fontSize: "0.8em",
     fontWeight: "bold",
   }
-  const isScreenSmall = useMediaQuery((theme: Theme) =>
-    theme.breakpoints.down("sm")
-  )
 
   return (
-    <Toolbar style={{ backgroundColor: "white" }} variant="dense">
+    <Toolbar sx={{ bgcolor: "white", boxShadow: "none" }} variant="dense">
       <IconButton
         color="inherit"
-        aria-label="open drawer"
-        onClick={props.handleDrawerOpen}
+        onClick={handleDrawerOpen}
         edge="start"
         sx={{
           mr: 2,
-          ...(props.open && { display: "none" }),
           color: ThemeColors.textInActive,
+          ...(open && { display: "none" }),
         }}
       >
         <MenuIcon />
